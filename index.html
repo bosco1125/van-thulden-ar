@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Allegory of Justice and Peace · Explore the painting</title>
+<meta name="description" content="Zoom into Theodoor van Thulden's Allegory of Justice and Peace (1659) and hang it on your own wall in augmented reality.">
+<meta property="og:title" content="Allegory of Justice and Peace — Theodoor van Thulden, 1659">
+<meta property="og:description" content="Zoom into the painting, or hang it on your wall in AR.">
+<meta property="og:image" content="painting.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+:root{--bg:#0e0b09;--panel:#171210;--line:#2e2620;--fg:#f1ece3;--mute:#a79b8b;--gold:#c9a45c;--red:#a8321f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;
+  padding:env(safe-area-inset-top) max(16px,env(safe-area-inset-right)) env(safe-area-inset-bottom) max(16px,env(safe-area-inset-left))}
+.wrap{max-width:1040px;margin:0 auto}
+header{padding:44px 0 20px;text-align:center}
+.kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+h1{font:600 clamp(34px,7vw,62px)/1.05 "Cormorant Garamond",Georgia,serif;margin:.25em 0 .1em;text-wrap:balance}
+.by{color:var(--mute);margin:0}
+h2{font:600 clamp(24px,4.5vw,34px)/1.15 "Cormorant Garamond",Georgia,serif;margin:0 0 6px}
+section{margin:36px 0 52px}
+.lead{color:var(--mute);margin:0 0 16px;max-width:60ch}
+.step{display:inline-flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.step b{display:inline-grid;place-items:center;width:22px;height:22px;border:1px solid var(--gold);border-radius:50%;font-weight:500;letter-spacing:0}
+/* 3D */
+model-viewer{width:100%;height:min(66vh,520px);background:radial-gradient(ellipse at 50% 40%,#2a211b,#0e0b09 75%);border:1px solid var(--line);border-radius:14px;--poster-color:transparent}
+.arbtn{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:var(--gold);color:#1a130c;border:0;border-radius:999px;padding:12px 22px;font:500 15px Inter,sans-serif;cursor:pointer;white-space:nowrap}
+.note{font-size:13px;color:var(--mute);margin:10px 2px 0}
+/* zoom */
+#stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#000;touch-action:none;height:min(62vh,560px);cursor:grab;user-select:none}
+#stage.drag{cursor:grabbing}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#art{display:block;width:100%;height:auto;pointer-events:none;-webkit-user-drag:none}
+.pin{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:2px solid #fff;background:rgba(168,50,31,.92);color:#fff;font:600 13px Inter,sans-serif;cursor:pointer;transform:scale(var(--inv,1));box-shadow:0 2px 10px rgba(0,0,0,.6);display:grid;place-items:center;padding:0}
+.pin.on{background:var(--gold);color:#1a130c;border-color:#fff}
+.ctrl{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:6px;z-index:3}
+.ctrl button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:rgba(23,18,16,.88);color:var(--fg);font-size:20px;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+.chips button{background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:400 14px Inter,sans-serif;cursor:pointer}
+.chips button.on{border-color:var(--gold);color:var(--gold)}
+#card{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:96px}
+#card h3{font:600 22px "Cormorant Garamond",Georgia,serif;margin:0 0 4px;color:var(--gold)}
+#card p{margin:0;color:#d9d0c3}
+#card small{display:block;margin-top:8px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--mute);font-size:13px}
+a{color:var(--gold)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">1659</div>
+  <h1>Allegory of Justice and Peace</h1>
+  <p class="by">Theodoor van Thulden</p>
+</header>
+
+<section id="wall">
+  <div class="step"><b>1</b> Hang it on your wall</div>
+  <h2>See it at life size in your room</h2>
+  <p class="lead">Turn it with a finger, then tap the button to place the framed painting on your own wall through your phone camera. Pinch to resize.</p>
+  <div style="position:relative">
+    <model-viewer id="mv" src="painting_frame.glb" alt="The painting in a gilded frame" camera-controls touch-action="pan-y"
+      ar ar-modes="webxr scene-viewer quick-look" ar-placement="wall" ar-scale="auto"
+      shadow-intensity="0.9" shadow-softness="0.8" exposure="1.05" environment-image="neutral"
+      camera-orbit="-12deg 84deg auto" min-camera-orbit="-60deg 60deg auto" max-camera-orbit="60deg 110deg auto" interaction-prompt="none">
+      <button slot="ar-button" class="arbtn">View on my wall</button>
+    </model-viewer>
+  </div>
+  <p class="note" id="arnote">Works on recent iPhones and Android phones. If the button doesn't appear, open this page in Safari (iPhone) or Chrome (Android).</p>
+</section>
+
+<section id="explore">
+  <div class="step"><b>2</b> Look closer</div>
+  <h2>Zoom into the painting</h2>
+  <p class="lead">Pinch or scroll to zoom, drag to move. Tap a numbered dot, or a name below, to go to a detail.</p>
+  <div id="stage" aria-label="Zoomable painting">
+    <div id="world"><img id="art" src="painting.jpg" alt="Allegory of Justice and Peace by Theodoor van Thulden, 1659"></div>
+    <div class="ctrl"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zreset" aria-label="Reset" style="font-size:15px">⤢</button></div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div id="card"><h3>Start here</h3><p>Pick a detail to explore the painting.</p></div>
+</section>
+
+<footer>
+  <p>Theodoor van Thulden, <i>Allegory of Justice and Peace</i>, 1659. The painting is in the public domain. Image enlarged for this page. Captions are interpretive readings, not museum labels.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+var DETAILS=[
+ {n:1,x:42.5,y:12.2,s:3.2,t:"Justitia",p:"Justice, the figure on the left. She wears a plume and gold diadem and looks across at Peace.",i:"Her attribute is the sword, held here with calm control instead of raised for a strike."},
+ {n:2,x:31.7,y:49.5,s:3.0,t:"The sword",p:"Justice's sword rests across her lap, point upward behind her. It is the symbol of authority and punishment, shown at rest.",i:"Strength that is held in reserve."},
+ {n:3,x:34.5,y:20.5,s:3.0,t:"A hand on the shoulder",p:"Justice's arm reaches round Peace's shoulder. It is the point of contact between the two figures.",i:"The painting's central gesture: the two meet, they do not oppose."},
+ {n:4,x:54.2,y:13.4,s:3.2,t:"Pax",p:"Peace, the figure on the right. She turns her head back toward Justice.",i:"Pax is the Latin word for peace."},
+ {n:5,x:76,y:21,s:2.6,t:"Cornucopia and staff",p:"Behind Peace, a horn of plenty overflows with fruit and flowers, and she holds a winged staff.",i:"Abundance, and the staff associated with Mercury, god of trade and messages."},
+ {n:6,x:58,y:88.5,s:2.8,t:"Shield and arrows",p:"At Peace's feet lie a round shield and a bundle of arrows.",i:"Read as weapons laid aside."},
+ {n:7,x:7.5,y:92,s:3.4,t:"Spilled coins",p:"A purse spills gold coins across the floor in the lower left corner.",i:"Wealth that follows peace."},
+ {n:8,x:39,y:95.5,s:4,t:"The signature",p:"The artist signed the painting on the floor, between the two figures' feet: \"Th. van Thulden fe.\" with the date 1659.",i:"fe. is short for fecit: Latin for \"made it\"."}
+];
+var stage=document.getElementById('stage'),world=document.getElementById('world'),art=document.getElementById('art');
+var chips=document.getElementById('chips'),card=document.getElementById('card');
+var S=1,X=0,Y=0,MIN=1,MAX=8,W=0,H=0,cur=-1;
+DETAILS.forEach(function(d,k){
+  var b=document.createElement('button');b.className='pin';b.textContent=d.n;b.style.left=d.x+'%';b.style.top=d.y+'%';b.setAttribute('aria-label',d.t);
+  b.addEventListener('click',function(e){e.stopPropagation();go(k)});b.addEventListener('pointerdown',function(e){e.stopPropagation()});
+  world.appendChild(b);d.pin=b;
+  var c=document.createElement('button');c.textContent=d.n+'  '+d.t;c.addEventListener('click',function(){go(k);stage.scrollIntoView({block:'center',behavior:'smooth'})});chips.appendChild(c);d.chip=c;
+});
+function size(){W=stage.clientWidth;H=stage.clientHeight;world.style.width=W+'px';var ah=W*art.naturalHeight/art.naturalWidth||W*0.685;world.style.height=ah+'px';
+  // fit whole painting height inside stage if taller than stage
+  MIN=Math.min(1,H/ah);if(S<MIN)S=MIN;clamp();apply()}
+function clamp(){var aw=W*S,ah=(parseFloat(world.style.height)||W*0.685)*S;
+  X=aw<=W?(W-aw)/2:Math.min(0,Math.max(W-aw,X));Y=ah<=H?(H-ah)/2:Math.min(0,Math.max(H-ah,Y))}
+function apply(){world.style.transform='translate('+X+'px,'+Y+'px) scale('+S+')';world.style.setProperty('--inv',1/S);
+  for(var i=0;i<DETAILS.length;i++)DETAILS[i].pin.style.setProperty('--inv',1/S)}
+function zoomAt(px,py,ns){ns=Math.max(MIN,Math.min(MAX,ns));var k=ns/S;X=px-(px-X)*k;Y=py-(py-Y)*k;S=ns;clamp();apply()}
+function go(k){var d=DETAILS[k],ah=parseFloat(world.style.height);cur=k;
+  var tx=d.x/100*W,ty=d.y/100*ah;var from={s:S,x:X,y:Y},ts=d.s;
+  var tX=W/2-tx*ts,tY=H/2-ty*ts,t0=performance.now(),D=650;
+  function step(t){var u=Math.min(1,(t-t0)/D);u=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;S=from.s+(ts-from.s)*u;X=from.x+(tX-from.x)*u;Y=from.y+(tY-from.y)*u;clamp();apply();if(u<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+  DETAILS.forEach(function(e,i){e.pin.classList.toggle('on',i===k);e.chip.classList.toggle('on',i===k)});
+  card.innerHTML='<h3>'+d.n+' · '+d.t+'</h3><p>'+d.p+'</p><small>'+d.i+'</small>'}
+// pointers
+var P={},last=null,pd=0;
+stage.addEventListener('pointerdown',function(e){stage.setPointerCapture(e.pointerId);P[e.pointerId]={x:e.clientX,y:e.clientY};stage.classList.add('drag');if(Object.keys(P).length===2){var a=Object.values(P);pd=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)}});
+stage.addEventListener('pointermove',function(e){if(!P[e.pointerId])return;var o=P[e.pointerId],ids=Object.keys(P);
+  if(ids.length===1){X+=e.clientX-o.x;Y+=e.clientY-o.y;clamp();apply()}
+  else if(ids.length===2){var a=ids.map(function(i){return i==e.pointerId?{x:e.clientX,y:e.clientY}:P[i]});var nd=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);var r=stage.getBoundingClientRect();zoomAt((a[0].x+a[1].x)/2-r.left,(a[0].y+a[1].y)/2-r.top,S*nd/(pd||nd));pd=nd}
+  P[e.pointerId]={x:e.clientX,y:e.clientY}});
+function up(e){delete P[e.pointerId];if(!Object.keys(P).length)stage.classList.remove('drag')}
+stage.addEventListener('pointerup',up);stage.addEventListener('pointercancel',up);
+stage.addEventListener('wheel',function(e){e.preventDefault();var r=stage.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,S*Math.exp(-e.deltaY*0.0016))},{passive:false});
+stage.addEventListener('dblclick',function(e){var r=stage.getBoundingClientRect();zoomAt(e.clientX-r.left,e.clientY-r.top,S>MIN*1.5?MIN:S*2.6)});
+document.getElementById('zin').onclick=function(){zoomAt(W/2,H/2,S*1.5)};
+document.getElementById('zout').onclick=function(){zoomAt(W/2,H/2,S/1.5)};
+document.getElementById('zreset').onclick=function(){S=MIN;X=0;Y=0;clamp();apply()};
+window.addEventListener('resize',size);if(art.complete)size();else art.addEventListener('load',size);size();
+// AR availability note
+var mv=document.getElementById('mv');mv.addEventListener('ar-status',function(e){if(e.detail.status==='failed')document.getElementById('arnote').textContent='AR could not start on this device or browser. You can still turn the framed painting and zoom into the details below.'});
+})();
+</script>
+</body>
+</html>
